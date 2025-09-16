@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "setup": "node -e \"console.log('Run setup.bat on Windows or setup.sh on Mac/Linux')\"",
     "check-env": "node -e \"const fs=require('fs'); if(!fs.existsSync('.env')){console.log('❌ .env file missing! Run: npm run setup'); process.exit(1);} else {console.log('✅ .env file found');}\"",
-    "start": "npm run check-env && npm run dev"
+    "start": "npm run check-env && npm run dev",
+    "vercel-build": "vite build"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

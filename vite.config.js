@@ -23,6 +23,7 @@ export default defineConfig({
         manualChunks: undefined,
       },
     },
+    outDir: 'dist',
   },
   preview: {
     // Enable client-side routing for preview mode
