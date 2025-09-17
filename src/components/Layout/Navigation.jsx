@@ -12,7 +12,8 @@ import {
   BellIcon,
   BookmarkIcon,
   ChevronRightIcon,
-  ClockIcon
+  ClockIcon,
+  XMarkIcon
 } from '@heroicons/react/24/outline';
 
 const getNavigationForRole = (userRole) => {
@@ -155,18 +156,31 @@ export const Navigation = ({ isOpen, onClose, userRole = 'student' }) => {
       {/* Mobile backdrop */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden transition-opacity duration-300"
           onClick={onClose}
+          aria-hidden="true"
         />
       )}
       
       {/* Navigation sidebar */}
       <nav className={`
         fixed top-16 left-0 z-50 w-80 h-[calc(100vh-4rem)] bg-white shadow-lg transform transition-transform duration-300 ease-in-out overflow-y-auto
-        lg:translate-x-0 lg:shadow-none lg:border-r lg:border-gray-200
+        lg:translate-x-0 lg:shadow-none lg:border-r lg:border-gray-200 lg:z-30
         ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
         <div className="p-4">
+          {/* Mobile Close Button */}
+          <div className="lg:hidden flex justify-between items-center mb-4 pb-4 border-b border-gray-200">
+            <h2 className="text-lg font-semibold text-gray-900">Navigation</h2>
+            <button
+              onClick={onClose}
+              className="p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100"
+              aria-label="Close navigation menu"
+            >
+              <XMarkIcon className="h-5 w-5" />
+            </button>
+          </div>
+
           {/* Breadcrumb Navigation */}
           {breadcrumbs.length > 1 && (
             <div className="mb-4 pb-4 border-b border-gray-200">

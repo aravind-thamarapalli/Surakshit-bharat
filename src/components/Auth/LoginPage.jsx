@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { OAUTH_PROVIDERS } from '../../services/authService';
-import { 
-  ShieldCheckIcon,
-  AcademicCapIcon,
-  UserGroupIcon,
-  Cog6ToothIcon
-} from '@heroicons/react/24/outline';
+import { ShieldCheckIcon } from '@heroicons/react/24/outline';
 
 export const LoginPage = () => {
   const { signInWithOAuth, loading, error } = useAuth();
@@ -23,64 +18,16 @@ export const LoginPage = () => {
     }
   };
 
-  const oauthButtons = [
-    {
-      provider: OAUTH_PROVIDERS.GOOGLE,
-      name: 'Google',
-      icon: '🔐',
-      bgColor: 'bg-red-600 hover:bg-red-700',
-      description: 'Sign in with your Google account'
-    },
-    {
-      provider: OAUTH_PROVIDERS.GITHUB,
-      name: 'GitHub',
-      icon: '⚡',
-      bgColor: 'bg-gray-800 hover:bg-gray-900',
-      description: 'Sign in with your GitHub account'
-    },
-    {
-      provider: OAUTH_PROVIDERS.MICROSOFT,
-      name: 'Microsoft',
-      icon: '🏢',
-      bgColor: 'bg-blue-600 hover:bg-blue-700',
-      description: 'Sign in with your Microsoft account'
-    }
-  ];
-
-  const roleCards = [
-    {
-      role: 'student',
-      title: 'Student Portal',
-      description: 'Access learning modules, track progress, and join the community',
-      icon: AcademicCapIcon,
-      features: ['Interactive Learning', 'Progress Tracking', 'Community Access', 'Certificates'],
-      color: 'bg-green-50 border-green-200 text-green-800'
-    },
-    {
-      role: 'teacher',
-      title: 'Teacher Portal',
-      description: 'Manage students, create content, and monitor learning outcomes',
-      icon: UserGroupIcon,
-      features: ['Student Management', 'Content Creation', 'Analytics Dashboard', 'Drill Coordination'],
-      color: 'bg-blue-50 border-blue-200 text-blue-800'
-    },
-    {
-      role: 'admin',
-      title: 'Admin Portal',
-      description: 'System administration, user management, and platform oversight',
-      icon: Cog6ToothIcon,
-      features: ['User Management', 'System Analytics', 'Content Moderation', 'Platform Settings'],
-      color: 'bg-purple-50 border-purple-200 text-purple-800'
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        {/* Logo and Title */}
         <div className="flex justify-center">
-          <ShieldCheckIcon className="h-16 w-16 text-green-600" />
+          <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center">
+            <ShieldCheckIcon className="h-10 w-10 text-white" />
+          </div>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
           Surakshi Bharat
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
@@ -88,113 +35,57 @@ export const LoginPage = () => {
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-6xl">
-        {/* Role Information Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 px-4">
-          {roleCards.map((roleCard) => {
-            const Icon = roleCard.icon;
-            return (
-              <div key={roleCard.role} className={`border-2 rounded-lg p-6 ${roleCard.color}`}>
-                <div className="flex items-center mb-4">
-                  <Icon className="h-8 w-8 mr-3" />
-                  <h3 className="text-lg font-semibold">{roleCard.title}</h3>
-                </div>
-                <p className="text-sm mb-4 opacity-80">{roleCard.description}</p>
-                <ul className="text-xs space-y-1">
-                  {roleCard.features.map((feature, index) => (
-                    <li key={index} className="flex items-center">
-                      <span className="mr-2">✓</span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Authentication Section */}
-        <div className="bg-white py-8 px-4 shadow-xl sm:rounded-lg sm:px-10 mx-4">
-          <div className="text-center mb-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
-              Sign in to access your portal
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          {/* Sign In Header */}
+          <div className="text-center mb-8">
+            <h3 className="text-xl font-semibold text-gray-900">
+              Sign in to your account
             </h3>
-            <p className="text-sm text-gray-600">
-              Choose your preferred authentication method
+            <p className="mt-2 text-sm text-gray-600">
+              Choose your preferred sign-in method
             </p>
           </div>
 
+          {/* Error Message */}
           {error && (
-            <div className="mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+            <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md">
               <p className="text-sm">{error}</p>
             </div>
           )}
 
-          <div className="space-y-3">
-            {oauthButtons.map((button) => (
-              <button
-                key={button.provider}
-                onClick={() => handleOAuthSignIn(button.provider)}
-                disabled={signingIn || loading}
-                className={`
-                  w-full flex items-center justify-center px-4 py-3 border border-transparent 
-                  rounded-md shadow-sm text-white font-medium transition-colors duration-200
-                  ${button.bgColor}
-                  disabled:opacity-50 disabled:cursor-not-allowed
-                `}
-              >
-                <span className="text-xl mr-3">{button.icon}</span>
-                <div className="text-left">
-                  <div className="text-sm font-medium">Continue with {button.name}</div>
-                  <div className="text-xs opacity-90">{button.description}</div>
-                </div>
-              </button>
-            ))}
+          {/* OAuth Buttons */}
+          <div className="space-y-4">
+            <button
+              onClick={() => handleOAuthSignIn(OAUTH_PROVIDERS.GOOGLE)}
+              disabled={signingIn || loading}
+              className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-md shadow-sm bg-white text-gray-700 font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+            >
+              <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+              Continue with Google
+            </button>
           </div>
 
+          {/* Loading State */}
           {signingIn && (
-            <div className="mt-4 text-center">
+            <div className="mt-6 text-center">
               <div className="inline-flex items-center text-sm text-gray-600">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-2"></div>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-green-600 mr-2"></div>
                 Signing you in...
               </div>
             </div>
           )}
 
-          <div className="mt-6 text-center">
+          {/* Footer */}
+          <div className="mt-8 text-center">
             <p className="text-xs text-gray-500">
-              By signing in, you agree to our Terms of Service and Privacy Policy.
-              Your role will be assigned by an administrator after registration.
+              By signing in, you agree to our Terms of Service and Privacy Policy
             </p>
-          </div>
-        </div>
-
-        {/* Features Section */}
-        <div className="mt-8 bg-white rounded-lg shadow-sm p-6 mx-4">
-          <h4 className="text-lg font-semibold text-gray-900 mb-4 text-center">
-            Platform Features
-          </h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
-            <div className="p-4">
-              <div className="text-2xl mb-2">📚</div>
-              <h5 className="font-medium text-gray-900">Interactive Learning</h5>
-              <p className="text-sm text-gray-600">Comprehensive disaster preparedness modules</p>
-            </div>
-            <div className="p-4">
-              <div className="text-2xl mb-2">🚨</div>
-              <h5 className="font-medium text-gray-900">Emergency Drills</h5>
-              <p className="text-sm text-gray-600">Realistic simulation and training exercises</p>
-            </div>
-            <div className="p-4">
-              <div className="text-2xl mb-2">👥</div>
-              <h5 className="font-medium text-gray-900">Community Hub</h5>
-              <p className="text-sm text-gray-600">Connect and collaborate with others</p>
-            </div>
-            <div className="p-4">
-              <div className="text-2xl mb-2">📊</div>
-              <h5 className="font-medium text-gray-900">Progress Tracking</h5>
-              <p className="text-sm text-gray-600">Monitor learning outcomes and achievements</p>
-            </div>
           </div>
         </div>
       </div>

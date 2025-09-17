@@ -21,35 +21,35 @@ export const ResourceLibrary = () => {
     {
       id: 1,
       name: 'National Emergency Services',
-      number: '911',
+      number: '112',
       type: 'Emergency',
       description: 'Fire, Police, Medical emergencies'
     },
     {
       id: 2,
       name: 'Disaster Management Authority',
-      number: '1078',
+      number: '+91-11-26701728',
       type: 'Disaster',
       description: 'Natural disaster response and coordination'
     },
     {
       id: 3,
       name: 'School Emergency Coordinator',
-      number: '(555) 123-4567',
+      number: '+91 123-4567',
       type: 'School',
       description: 'Internal emergency response team'
     },
     {
       id: 4,
       name: 'Local Hospital',
-      number: '(555) 987-6543',
+      number: '+91 987-6543',
       type: 'Medical',
       description: 'Emergency medical services'
     },
     {
       id: 5,
       name: 'Weather Alert Service',
-      number: '(555) 246-8135',
+      number: '+91-555-246-8135',
       type: 'Weather',
       description: 'Severe weather warnings and updates'
     }

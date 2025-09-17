@@ -29,19 +29,24 @@ export const Header = ({ user, onMenuToggle }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
+            {/* Hamburger Menu Button */}
             <button
               onClick={onMenuToggle}
-              className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+              className="lg:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500 transition-colors duration-200"
+              aria-label="Toggle navigation menu"
             >
               <Bars3Icon className="h-6 w-6" />
             </button>
-            <div className="flex items-center">
+            
+            {/* Logo and Brand */}
+            <div className="flex items-center ml-2 lg:ml-0">
               <div className="flex-shrink-0">
                 <div className="flex items-center">
                   <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-white font-bold text-sm">SB</span>
+                    <ShieldCheckIcon className="h-5 w-5 text-white" />
                   </div>
-                  <span className="font-bold text-lg text-gray-900">Surakshit Bharat</span>
+                  <span className="font-bold text-lg text-gray-900 hidden sm:block">Surakshit Bharat</span>
+                  <span className="font-bold text-lg text-gray-900 sm:hidden">SB</span>
                 </div>
               </div>
             </div>

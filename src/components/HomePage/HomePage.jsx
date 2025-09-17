@@ -30,8 +30,8 @@ export const HomePage = () => {
   ];
 
   const emergencyNumbers = [
-    { label: 'Emergency Services', number: '911', color: 'text-red-600' },
-    { label: 'Disaster Hotline', number: '1078', color: 'text-orange-600' }
+    { label: 'Emergency Services', number: '112', color: 'text-red-600' },
+    { label: 'Disaster Hotline', number: '+91-11-26701728', color: 'text-orange-600' }
   ];
 
   const portals = [

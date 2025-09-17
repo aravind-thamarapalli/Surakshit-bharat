@@ -14,6 +14,7 @@ import { LandingPage } from './components/Landing/LandingPage';
 import { AuthCallback } from './components/Auth/AuthCallback';
 import { ProfileSetup } from './components/Auth/ProfileSetup';
 import { ProfilePage } from './components/Auth/ProfilePage';
+import { LoginPage } from './components/Auth/LoginPage';
 import { ProtectedRoute, RoleRoute } from './components/Auth/ProtectedRoute';
 import ErrorBoundary from './components/Common/ErrorBoundary';
 import RouteTest from './components/Common/RouteTest';
@@ -27,6 +28,7 @@ function App() {
           <Routes>
           {/* Public routes */}
           <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/profile/setup" element={<ProfileSetup />} />
           
